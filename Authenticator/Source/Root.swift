@@ -128,6 +128,7 @@ extension Root {
         case showApplicationSettings
         case openURL(URL)
         case setDigitGroupSize(Int)
+        case exportData
     }
 
     mutating func update(with action: Action) throws -> Effect? {
@@ -321,6 +322,9 @@ extension Root {
 
         case let .setDigitGroupSize(digitGroupSize):
             return .setDigitGroupSize(digitGroupSize)
+
+        case .exportData:
+            return .exportData
         }
     }
 }

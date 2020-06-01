@@ -84,6 +84,10 @@ struct DemoTokenStore: TokenStore {
     func deletePersistentToken(_ persistentToken: PersistentToken) throws {
         throw Error()
     }
+
+    func createAndExportBackup() throws -> Data {
+        throw Error()
+    }
 }
 
 private extension Token {

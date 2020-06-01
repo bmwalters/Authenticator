@@ -33,6 +33,7 @@ struct Menu: Component {
         case none
         case info(Info)
         case displayOptions(DisplayOptions)
+        case exportData(ExportData)
 
         func viewModel(digitGroupSize: Int) -> Menu.ViewModel.Child {
             switch self {
@@ -42,6 +43,8 @@ struct Menu: Component {
                 return .info(info.viewModel)
             case .displayOptions(let displayOptions):
                 return .displayOptions(displayOptions.viewModel(digitGroupSize: digitGroupSize))
+            case .exportData(let exportData):
+                return .exportData(exportData.viewModel())
             }
         }
     }
@@ -70,6 +73,7 @@ struct Menu: Component {
             case none
             case info(Info.ViewModel)
             case displayOptions(DisplayOptions.ViewModel)
+            case exportData(ExportData.ViewModel)
         }
     }
 
@@ -78,10 +82,12 @@ struct Menu: Component {
     enum Action {
         case dismissInfo
         case dismissDisplayOptions
+        case dismissExportData
 
         case infoListEffect(InfoList.Effect)
         case infoEffect(Info.Effect)
         case displayOptionsEffect(DisplayOptions.Effect)
+        case exportDataEffect(ExportData.Effect)
     }
 
     enum Effect {
@@ -90,6 +96,7 @@ struct Menu: Component {
         case showSuccessMessage(String)
         case openURL(URL)
         case setDigitGroupSize(Int)
+        case exportData
     }
 
     mutating func update(with action: Action) throws -> Effect? {
@@ -102,6 +109,10 @@ struct Menu: Component {
             try dismissDisplayOptions()
             return nil
 
+        case .dismissExportData:
+            try dismissExportData()
+            return nil
+
         case .infoListEffect(let effect):
             return try handleInfoListEffect(effect)
 
@@ -110,6 +121,9 @@ struct Menu: Component {
 
         case .displayOptionsEffect(let effect):
             return handleDisplayOptionsEffect(effect)
+
+        case .exportDataEffect(let effect):
+            return handleExportDataEffect(effect)
         }
     }
 
@@ -120,13 +134,7 @@ struct Menu: Component {
             return nil
 
         case .showBackupInfo:
-            let backupInfo: Info
-            do {
-                backupInfo = try Info.backupInfo()
-            } catch {
-                return .showErrorMessage("Failed to load backup info.")
-            }
-            try showInfo(backupInfo)
+            try showExportData()
             return nil
 
         case .showLicenseInfo:
@@ -162,6 +170,15 @@ struct Menu: Component {
         }
     }
 
+    private mutating func handleExportDataEffect(_ effect: ExportData.Effect) -> Effect? {
+        switch effect {
+        case .done:
+            return .dismissMenu
+        case .exportData:
+            return .exportData
+        }
+    }
+
     // MARK: -
 
     private enum Error: Swift.Error {
@@ -191,6 +208,20 @@ struct Menu: Component {
 
     private mutating func dismissDisplayOptions() throws {
         guard case .displayOptions = child else {
+            throw Error.badChildState
+        }
+        child = .none
+    }
+
+    private mutating func showExportData() throws {
+        guard case .none = child else {
+            throw Error.badChildState
+        }
+        child = .exportData(ExportData())
+    }
+
+    private mutating func dismissExportData() throws {
+        guard case .exportData = child else {
             throw Error.badChildState
         }
         child = .none

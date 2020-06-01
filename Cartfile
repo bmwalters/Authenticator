@@ -1,4 +1,5 @@
 # Configuration for Carthage (https://github.com/Carthage/Carthage)
 
-github "bmwalters/OneTimePassword" "feature/steamguard"
+github "krzyzanowskim/CryptoSwift"
+github "bmwalters/OneTimePassword" "develop"
 github "SVProgressHUD/SVProgressHUD" ~> 2.0

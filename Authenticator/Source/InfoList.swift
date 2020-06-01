@@ -41,7 +41,7 @@ struct InfoList {
     }
 
     var viewModel: ViewModel {
-        let backupDescription = "For security reasons, tokens will be stored only on this device, and will not be included in iCloud or unencrypted backups."
+        let backupDescription = "Tokens are only included in encrypted iTunes backups. A portable encrypted data export can also be created at any time."
         let licenseDescription = "Authenticator makes use of several third party libraries."
 
         return ViewModel(title: "Info", rowModels: [
@@ -51,7 +51,7 @@ struct InfoList {
                      action: .showDisplayOptions),
             RowModel(title: "Backups",
                      description: backupDescription,
-                     callToAction: "Learn More →".replacingOccurrences(of: " ", with: "\u{00A0}"),
+                     callToAction: "Export Data →".replacingOccurrences(of: " ", with: "\u{00A0}"),
                      action: .showBackupInfo),
             RowModel(title: "Open Source",
                      description: licenseDescription,

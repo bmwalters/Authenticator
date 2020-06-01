@@ -113,6 +113,7 @@ extension TokenFormViewController: ModelBased {}
 extension InfoListViewController: ModelBased {}
 extension InfoViewController: ModelBased {}
 extension DisplayOptionsViewController: ModelBased {}
+extension ExportDataViewController: ModelBased {}
 
 private func reify<ViewController: ModelBasedViewController>(_ existingViewController: UIViewController?, viewModel: ViewController.ViewModel, dispatchAction: @escaping (ViewController.Action) -> Void) -> ViewController {
     if let viewController = existingViewController as? ViewController {
@@ -168,6 +169,14 @@ extension RootViewController {
                                   using: DisplayOptionsViewController.self,
                                   actionTransform: compose(Menu.Action.displayOptionsEffect, Root.Action.menuAction))
 
+            case .exportData(let exportDataViewModel):
+                presentViewModels(menuViewModel.infoList,
+                                  using: InfoListViewController.self,
+                                  actionTransform: compose(Menu.Action.infoListEffect, Root.Action.menuAction),
+                                  and: exportDataViewModel,
+                                  using: ExportDataViewController.self,
+                                  actionTransform: compose(Menu.Action.exportDataEffect, Root.Action.menuAction))
+
             case .none:
                 presentViewModel(menuViewModel.infoList,
                                  using: InfoListViewController.self,
@@ -221,6 +230,8 @@ extension RootViewController: UINavigationControllerDelegate {
                 // If the current modal state is the menu with a DisplayOptions child, and the just-shown view
                 // controller is an InfoList, then the user has popped the DisplayOptions view controller.
                 dispatchAction(.menuAction(.dismissDisplayOptions))
+            case .exportData:
+                dispatchAction(.menuAction(.dismissExportData))
             default:
                 break
             }

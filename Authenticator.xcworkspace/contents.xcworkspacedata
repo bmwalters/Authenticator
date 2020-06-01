@@ -16,4 +16,7 @@
    <FileRef
       location = "group:Carthage/Checkouts/SimulatorStatusMagic/SimulatorStatusMagic.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Carthage/Checkouts/CryptoSwift/CryptoSwift.xcodeproj">
+   </FileRef>
 </Workspace>

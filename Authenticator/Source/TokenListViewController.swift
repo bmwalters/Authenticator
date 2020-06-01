@@ -82,8 +82,8 @@ class TokenListViewController: UITableViewController {
     }()
 
     private let backupWarningLabel: UILabel = {
-        let linkTitle = "Learn More →"
-        let message = "For security reasons, tokens will be stored only on this \(UIDevice.current.model), and will not be included in iCloud or unencrypted backups.  \(linkTitle)"
+        let linkTitle = "Export Data →"
+        let message = "Tokens are only included in encrypted iTunes backups. A portable encrypted data export can also be created at any time.  \(linkTitle)"
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.3
         paragraphStyle.paragraphSpacing = 5

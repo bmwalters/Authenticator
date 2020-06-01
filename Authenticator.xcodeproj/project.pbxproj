@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* OTPAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* OTPAppDelegate.swift */; };
 		8B0028B511EB75920092DE18 /* ScannerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0028B411EB75920092DE18 /* ScannerOverlayView.swift */; };
+		B67917722483745300E22208 /* ExportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67917712483745300E22208 /* ExportData.swift */; };
+		B67917742483745B00E22208 /* ExportDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67917732483745B00E22208 /* ExportDataViewController.swift */; };
+		B67917792483832C00E22208 /* CryptoSwift.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = B67917782483832C00E22208 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B681F14024849054005A74E3 /* BackupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B681F13F24849054005A74E3 /* BackupService.swift */; };
 		C910ADC11BF0315A00C988F5 /* TokenList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C910ADC01BF0315A00C988F5 /* TokenList.swift */; };
 		C9204A851E886A3500998D3E /* Acknowledgements.html in Resources */ = {isa = PBXBuildFile; fileRef = C9204A841E886A3500998D3E /* Acknowledgements.html */; };
 		C92708AC19CFB0750033128B /* TokenListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92708AB19CFB0750033128B /* TokenListViewController.swift */; };
@@ -98,6 +102,7 @@
 				C944A5591A7ECB3100E08B1E /* Base32.framework in Copy Frameworks */,
 				C944A5571A7ECB0800E08B1E /* OneTimePassword.framework in Copy Frameworks */,
 				C97CDF261BEEA66A00D64406 /* SVProgressHUD.framework in Copy Frameworks */,
+				B67917792483832C00E22208 /* CryptoSwift.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +115,10 @@
 		8B0028B411EB75920092DE18 /* ScannerOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerOverlayView.swift; sourceTree = "<group>"; };
 		8B2B8AE1118BA49F00437315 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8BF5147F118799AE005C936F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B67917712483745300E22208 /* ExportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportData.swift; sourceTree = "<group>"; };
+		B67917732483745B00E22208 /* ExportDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDataViewController.swift; sourceTree = "<group>"; };
+		B67917782483832C00E22208 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B681F13F24849054005A74E3 /* BackupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupService.swift; sourceTree = "<group>"; };
 		C910ADC01BF0315A00C988F5 /* TokenList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenList.swift; sourceTree = "<group>"; };
 		C91CDAEE214EEA82006488F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C91CDAFD214EF044006488F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -286,6 +295,7 @@
 				C944A5561A7ECB0800E08B1E /* OneTimePassword.framework */,
 				C97CDF241BEEA49300D64406 /* SVProgressHUD.framework */,
 				C9A262DC1E177437004E6CEB /* SimulatorStatusMagiciOS.framework */,
+				B67917782483832C00E22208 /* CryptoSwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -439,6 +449,8 @@
 				C9A1C1A51E501CB2009E65D6 /* InfoViewController.swift */,
 				C9CDD1CE209662E100636056 /* DisplayOptions.swift */,
 				C9CDD1D02096635300636056 /* DisplayOptionsViewController.swift */,
+				B67917712483745300E22208 /* ExportData.swift */,
+				B67917732483745B00E22208 /* ExportDataViewController.swift */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -501,6 +513,7 @@
 			children = (
 				C9F7A8601C4D90B50082E5AE /* TokenStore.swift */,
 				C9A23F2D2159C28200615846 /* Settings.swift */,
+				B681F13F24849054005A74E3 /* BackupService.swift */,
 			);
 			name = "Data Store";
 			sourceTree = "<group>";
@@ -669,6 +682,7 @@
 				C9AAB0791B9113BF000CE547 /* TokenFormModels.swift in Sources */,
 				1D3623260D0F684500981E51 /* OTPAppDelegate.swift in Sources */,
 				C9919CE21BA733FD006237C1 /* Section.swift in Sources */,
+				B67917742483745B00E22208 /* ExportDataViewController.swift in Sources */,
 				C9D6C8461906CD54004F0E08 /* TextFieldRow.swift in Sources */,
 				C9B7328D1C09495D0076F77E /* TableDiff.swift in Sources */,
 				C93BD6231C167CD100FFFB8F /* Root.swift in Sources */,
@@ -679,8 +693,10 @@
 				C9CC09531BA9133B008C54FE /* FocusCell.swift in Sources */,
 				C99069D1180CBAC900BAEF53 /* TokenScannerViewController.swift in Sources */,
 				C9EB448E1C52A74200ACFA87 /* Component.swift in Sources */,
+				B67917722483745300E22208 /* ExportData.swift in Sources */,
 				C9A1C1A61E501CB2009E65D6 /* InfoViewController.swift in Sources */,
 				C9D6C83F1906BD68004F0E08 /* SegmentedControlRow.swift in Sources */,
+				B681F14024849054005A74E3 /* BackupService.swift in Sources */,
 				C968D1151CB4C639004ED7BB /* DisplayTime.swift in Sources */,
 				8B0028B511EB75920092DE18 /* ScannerOverlayView.swift in Sources */,
 				C9E11E1121543E2A00C1AA53 /* Menu.swift in Sources */,

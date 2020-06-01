@@ -31,6 +31,7 @@ import SVProgressHUD
 
 class AppController {
     private let store: TokenStore
+    private let backup: BackupService
     private let settings: Settings
     private var component: Root {
         didSet {
@@ -69,6 +70,8 @@ class AppController {
             // If the TokenStore could not be created, the app is unusable.
             fatalError("Failed to load token store: \(error)")
         }
+
+        backup = BackupServiceImpl()
 
         settings = Settings()
 
@@ -183,6 +186,30 @@ class AppController {
         case let .setDigitGroupSize(digitGroupSize):
             settings.digitGroupSize = digitGroupSize
             updateView()
+
+        case .exportData:
+            // TODO: pass password in from UI
+            // TODO: flow success / failure back down
+            // swiftlint:disable force_try
+            let alert = UIAlertController(title: "Enter Password", message: nil, preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { $0.isSecureTextEntry = true })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Create", style: .default) { [unowned self] _ in
+                // TODO: clean all this up
+                let password = alert.textFields![0].text ?? ""
+                let backupData = try! self.backup.export(tokens: self.store.persistentTokens.map { $0.token }, password: password)
+
+                let documentDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                let url = documentDirectory.appendingPathComponent("authenticator_tokens.aes")
+                try! backupData.write(to: url)
+                let shareSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+                let presenter = self.topViewController(presentedFrom: self.rootViewController)
+                presenter.present(shareSheet, animated: true, completion: nil)
+            })
+            let presenter = topViewController(presentedFrom: rootViewController)
+            presenter.present(alert, animated: true, completion: nil)
+
+        // TODO: import backup; allow user to decide merge or replace.
         }
     }
 
